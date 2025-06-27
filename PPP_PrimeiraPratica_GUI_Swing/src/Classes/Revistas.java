@@ -1,8 +1,6 @@
-package src2;
+package Classes;
 
-import java.util.ArrayList;
-
-public class Revistas extends Biblioteca implements IBiblioteca{
+public class Revistas extends Biblioteca implements IBiblioteca {
 
 
     private String titulo;

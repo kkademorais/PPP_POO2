@@ -1,31 +1,31 @@
-package src2.GUI;
+package Classes.GUI;
 
-import src2.Biblioteca;
-import src2.Revistas;
+import Classes.Biblioteca;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BibliotecaGUI extends JFrame{
 
+        //Atributos
     private JFrame janelaPrincipal;
     Biblioteca biblioteca;
 
+        //Construtor
     public BibliotecaGUI(Biblioteca biblioteca){
         this.janelaPrincipal = new JFrame("Biblioteca KKa");
         this.biblioteca = biblioteca;
         criarBiblioteca(biblioteca);
     }
 
+        //Atributo e getter pra garantir a consistência dos dados
     private static BibliotecaGUI instancia;
-
     public static BibliotecaGUI getInstancia(Biblioteca biblioteca){
         if(instancia == null) instancia = new BibliotecaGUI(biblioteca);
         return instancia;
     }
 
+        //Método principal pra criar a tela
     public void criarBiblioteca(Biblioteca biblioteca){
 
         janelaPrincipal.setSize(350,200);
@@ -46,14 +46,15 @@ public class BibliotecaGUI extends JFrame{
 
         janelaPrincipal.setVisible(true);
 
+            //ActionListeners pra navegar pras outras telas
         livroButton.addActionListener(livroGUI -> {
             janelaPrincipal.setVisible(false);
             LivrosGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        });
+        }); //Ir pra tela de livros
         revistaButton.addActionListener(revistaGUI -> {
             janelaPrincipal.setVisible(false);
             RevistasGUI.getInstancia(biblioteca).getJanela().setVisible(true);
-        });
+        }); //Ir pra tela de revistas
 
     }
 

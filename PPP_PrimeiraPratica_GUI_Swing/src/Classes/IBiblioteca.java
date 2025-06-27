@@ -1,4 +1,4 @@
-package src2;
+package Classes;
 
 public interface IBiblioteca {
     String getTitulo();

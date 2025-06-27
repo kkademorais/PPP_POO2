@@ -1,37 +1,39 @@
-package src2.GUI;
+package Classes.GUI;
 
-import src2.Biblioteca;
-import src2.Livros;
+import Classes.Biblioteca;
+import Classes.Livros;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LivrosGUI extends JFrame{
 
+        //Atributos
     private JFrame janelaPrincipal;
     private Biblioteca biblioteca;
 
+        //Construtor
     public LivrosGUI(Biblioteca biblioteca){
         this.janelaPrincipal = new JFrame("Livros");
         this.biblioteca = biblioteca;
         criarLivro(biblioteca);
     }
 
+        //Getter
     public JFrame getJanelaPrincipal() {
         return janelaPrincipal;
     }
 
+        //Atributo e getter pra garantir consistência das telas
     private static LivrosGUI instancia;
     public static LivrosGUI getInstancia(Biblioteca biblioteca){
         if(instancia == null) instancia = new LivrosGUI(biblioteca);
         return instancia;
     }
 
+        //Método principal -> Cria a tela
     public void criarLivro(Biblioteca biblioteca){
 
-        Biblioteca livros = new Livros();
 
         //Criação da Janela e do Painel Principal
         janelaPrincipal.setSize(350,200);
@@ -104,7 +106,7 @@ public class LivrosGUI extends JFrame{
         //janelaPrincipal.pack(); //Ajusta tamanho do JFrame aos seus componentes
         janelaPrincipal.setVisible(true);
 
-
+            //ActionListener de incluir livro
         incluirButton.addActionListener(incluirLivro -> {
             biblioteca.adicionarMaterial(new Livros(titulo.getText(), autor.getText(), ano.getText()));
             titulo.setText("");
@@ -112,14 +114,15 @@ public class LivrosGUI extends JFrame{
             ano.setText("");
         });
 
+            //ActionListeners pra navegar pras outras telas
         revistasButton.addActionListener(criarRevista -> {
             janelaPrincipal.setVisible(false);
             RevistasGUI.getInstancia(biblioteca).getJanela().setVisible(true);
-        });
+        }); //Tela de Revistas
         listagemButton.addActionListener(listar -> {
             janelaPrincipal.setVisible(false);
             ListagemGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        });
+        }); //Tela de Listar dados registrados
 
 
     }
