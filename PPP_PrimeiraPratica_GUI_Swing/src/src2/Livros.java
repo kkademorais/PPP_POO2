@@ -2,22 +2,19 @@ package src2;
 
 import java.util.ArrayList;
 
-public class Livros implements IBiblioteca{
-
-    private ArrayList<Livros> livrosList;
+public class Livros extends Biblioteca implements IBiblioteca{
 
     private String titulo;
     private String autor;
-    private int ano;
+    private String ano;
 
     public Livros(){
-        this.livrosList = new ArrayList<Livros>();
     }
-    public Livros(String titulo, String autor, int ano){
+    public Livros(String titulo, String autor, String ano){
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
-        this.livrosList = new ArrayList<Livros>();
+        //this.livrosList = new ArrayList<Livros>();
     }
 
     @Override
@@ -31,29 +28,25 @@ public class Livros implements IBiblioteca{
     }
 
     @Override
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
     //Get do livrosList
     @Override
     public void imprimirMaterial() {
-        for(Livros livros: livrosList){
-            System.out.println("Livro: ");
-            System.out.printf("Título: %s \n", livros.getTitulo());
-            System.out.printf("Autor: %s \n", livros.getResponsavel());
-            System.out.printf("Ano: %s \n", livros.getAno());
-            System.out.println();
+        for(Biblioteca livros: getMaterialBiblioteca()){
+            System.out.println("Livros: ");
         }
+    }
+    @Override
+    public void adicionarMaterial(Biblioteca materialAdc) {
+        getMaterialBiblioteca().add(materialAdc);
+        System.out.println("Livro adicionado!");
     }
 
     @Override
-    public ArrayList<Livros> getListaMaterial() {
-        return livrosList;
+    public String toString() {
+        return String.format("Livro: %s - %s (%s)", getTitulo(), getResponsavel(), getAno());
     }
-
-    // @Override
-    //public void adicionarMaterial() {
-    //    livrosList.add(Livros e);
-    //}
 }

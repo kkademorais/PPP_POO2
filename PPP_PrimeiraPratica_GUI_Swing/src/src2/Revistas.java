@@ -2,20 +2,18 @@ package src2;
 
 import java.util.ArrayList;
 
-public class Revistas implements IBiblioteca{
+public class Revistas extends Biblioteca implements IBiblioteca{
 
-    private ArrayList<Revistas> revistasList;
 
     private String titulo;
     private String org;
-    private int vol;
-    private int numero;
-    private int ano;
+    private String vol;
+    private String numero;
+    private String ano;
 
     public Revistas(){
-        this.revistasList = new ArrayList<Revistas>();
     }
-    public Revistas(String titulo, String org, int vol, int numero, int ano){
+    public Revistas(String titulo, String org, String vol, String numero, String ano){
         this.titulo = titulo;
         this.org = org;
         this.vol = vol;
@@ -33,36 +31,33 @@ public class Revistas implements IBiblioteca{
         return org;
     }
 
-    public int getVol() {
+    public String getVol() {
         return vol;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     @Override
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    //Get do revistasList
     @Override
     public void imprimirMaterial() {
-        for(Revistas revistas: revistasList){
-            System.out.println("Revista: ");
-            System.out.printf("Título: %s \n", revistas.getTitulo());
-            System.out.printf("Org: %s \n", revistas.getResponsavel());
-            System.out.printf("Volume: %d \n", revistas.getVol());
-            System.out.printf("Número: %d \n", revistas.getNumero());
-            System.out.printf("Ano: %d \n", revistas.getAno());
-            System.out.println();
+        for(Biblioteca revistas: getMaterialBiblioteca()){
+            System.out.println("Revistas: ");
         }
+    }
+    @Override
+    public void adicionarMaterial(Biblioteca materialAdc) {
+        getMaterialBiblioteca().add(materialAdc);
+        System.out.println("Revista adicionada!");
     }
 
     @Override
-    public ArrayList<Revistas> getListaMaterial() {
-        return revistasList;
+    public String toString() {
+        return String.format("Revista: %s - %s Vol %s - Nº %s (%s)", getTitulo(), getResponsavel(), getVol(), getNumero(), getAno());
     }
-
 }
