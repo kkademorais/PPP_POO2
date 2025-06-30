@@ -140,10 +140,12 @@ public class RevistasGUI extends JFrame{
         //Criação dos campos de botões e do Painel de Botão
         JButton incluirButton = new JButton("Incluir");
         JButton livrosButton = new JButton("Livros");
+        JButton filmesButton = new JButton("Filmes");
         JButton listagemButton = new JButton("Listagem");
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.add(incluirButton);
         buttonsPanel.add(livrosButton);
+        buttonsPanel.add(filmesButton); // Feature nova
         buttonsPanel.add(listagemButton);
         cp.add(buttonsPanel);
 
@@ -169,6 +171,11 @@ public class RevistasGUI extends JFrame{
             janelaPrincipal.setVisible(false);
             ListagemGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
         }); //Ir pra tela de listagem dos dados registrados
+        filmesButton.addActionListener(filmes -> {
+            janelaPrincipal.setVisible(false);
+            FilmesGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
+        }); //Tela de Filmes -> Feature nova
+
     }
 
 

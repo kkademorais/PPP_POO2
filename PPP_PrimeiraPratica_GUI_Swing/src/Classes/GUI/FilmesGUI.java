@@ -145,15 +145,6 @@ public class FilmesGUI extends JFrame {
             generoText.setText("");
         });
 
-
-
-
-
-    }
-
-
-    public static void main(String[] args) {
-        new FilmesGUI(new Biblioteca());
     }
 
 }

@@ -36,13 +36,17 @@ public class BibliotecaGUI extends JFrame{
 
         JButton livroButton = new JButton("Livros");
         JButton revistaButton = new JButton("Revistas");
+        JButton filmesButton = new JButton("Filmes"); // Feature nova
         livroButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         revistaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        filmesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         cp.add(Box.createRigidArea(new Dimension(0, 35)));
         cp.add(livroButton);
         cp.add(Box.createRigidArea(new Dimension(0, 15)));
         cp.add(revistaButton);
+        cp.add(Box.createRigidArea(new Dimension(0, 15)));
+        cp.add(filmesButton);
 
         janelaPrincipal.setVisible(true);
 
@@ -55,6 +59,11 @@ public class BibliotecaGUI extends JFrame{
             janelaPrincipal.setVisible(false);
             RevistasGUI.getInstancia(biblioteca).getJanela().setVisible(true);
         }); //Ir pra tela de revistas
+        filmesButton.addActionListener(filmes -> {
+            janelaPrincipal.setVisible(false);
+            FilmesGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
+        }); //Tela de Filmes -> Feature nova
+
 
     }
 

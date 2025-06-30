@@ -48,9 +48,11 @@ public class ListagemGUI extends JFrame{
         }
         JButton livrosButton = new JButton("Livros");
         JButton revistasButton = new JButton("Revistas");
+        JButton filmesButton = new JButton("Filmes"); // Feature nova
         JPanel botoesPanel = new JPanel();
         botoesPanel.add(livrosButton);
         botoesPanel.add(revistasButton);
+        botoesPanel.add(filmesButton);
         cp.add(botoesPanel);
 
         janelaPrincipal.setVisible(true);
@@ -64,6 +66,11 @@ public class ListagemGUI extends JFrame{
             janelaPrincipal.setVisible(false);
             RevistasGUI.getInstancia(biblioteca).getJanela().setVisible(true);
         }); //Ir pra tela de revistas
+        filmesButton.addActionListener(filmes -> {
+            janelaPrincipal.setVisible(false);
+            FilmesGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
+        }); //Tela de Filmes -> Feature nova
+
 
     }
 

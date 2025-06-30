@@ -1,6 +1,7 @@
 package Classes.GUI;
 
 import Classes.Biblioteca;
+import Classes.Filmes;
 import Classes.Livros;
 
 import javax.swing.*;
@@ -95,10 +96,12 @@ public class LivrosGUI extends JFrame{
         //Criação dos campos de botões e do Painel de Botão
         JButton incluirButton = new JButton("Incluir");
         JButton revistasButton = new JButton("Revistas");
+        JButton filmesButton = new JButton("Filmes"); // Feature nova
         JButton listagemButton = new JButton("Listagem");
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.add(incluirButton);
         buttonsPanel.add(revistasButton);
+        buttonsPanel.add(filmesButton);
         buttonsPanel.add(listagemButton);
         cp.add(buttonsPanel, BorderLayout.SOUTH);
 
@@ -123,7 +126,10 @@ public class LivrosGUI extends JFrame{
             janelaPrincipal.setVisible(false);
             ListagemGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
         }); //Tela de Listar dados registrados
-
+        filmesButton.addActionListener(filmes -> {
+            janelaPrincipal.setVisible(false);
+            FilmesGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
+        }); //Tela de Filmes -> Feature nova
 
     }
 
