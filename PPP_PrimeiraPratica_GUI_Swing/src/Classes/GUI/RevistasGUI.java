@@ -6,7 +6,7 @@ import Classes.Revistas;
 import javax.swing.*;
 import java.awt.*;
 
-public class RevistasGUI extends JFrame{
+public class RevistasGUI extends BibliotecaGUI{
 
         //Atributos
     private JFrame janelaPrincipal;
@@ -14,6 +14,10 @@ public class RevistasGUI extends JFrame{
 
         //Getter
     public JFrame getJanela() {
+        return janelaPrincipal;
+    }
+    @Override
+    public JFrame getJanelaPrincipal() {
         return janelaPrincipal;
     }
 
@@ -31,14 +35,21 @@ public class RevistasGUI extends JFrame{
         return instancia;
     }
 
-        //Método principal -> cria tela
+    @Override
+    public void configJanelaPrincipal(JFrame janelaPrincipal) {
+        super.configJanelaPrincipal(janelaPrincipal);
+    }
+
+    @Override
+    public void buttonAddActionListener(BibliotecaGUI botao) {
+        super.buttonAddActionListener(botao);
+    }
+
+    //Método principal -> cria tela
     public void criarRevista(Biblioteca biblioteca){
 
-
         //Criação da Janela e do Painel Principal
-        janelaPrincipal.setSize(350,200);
-        janelaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janelaPrincipal.setLocationRelativeTo(null); //Centraliza na tela
+        configJanelaPrincipal(janelaPrincipal);
 
         //Container pra manipular o Content Pane
         Container cp = janelaPrincipal.getContentPane();
@@ -162,19 +173,9 @@ public class RevistasGUI extends JFrame{
             ano.setText("");
         });
 
-            //ActionListeners pra navegar pras outras telas
-        livrosButton.addActionListener(exibirLivros -> {
-            janelaPrincipal.setVisible(false);
-            LivrosGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        }); //Ir pra tela de livro
-        listagemButton.addActionListener(listar -> {
-            janelaPrincipal.setVisible(false);
-            ListagemGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        }); //Ir pra tela de listagem dos dados registrados
-        filmesButton.addActionListener(filmes -> {
-            janelaPrincipal.setVisible(false);
-            FilmesGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        }); //Tela de Filmes -> Feature nova
+        livrosButton.addActionListener(livros -> buttonAddActionListener(LivrosGUI.getInstancia(biblioteca)));
+        listagemButton.addActionListener(listar -> buttonAddActionListener(ListagemGUI.getInstancia(biblioteca)));
+        filmesButton.addActionListener(filmes -> buttonAddActionListener(FilmesGUI.getInstancia(biblioteca)));
 
     }
 

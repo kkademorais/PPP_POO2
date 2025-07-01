@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class FilmesGUI extends JFrame {
+public class FilmesGUI extends BibliotecaGUI{
 
         // Atributos
     private JFrame janelaPrincipal;
@@ -31,13 +31,21 @@ public class FilmesGUI extends JFrame {
         return instancia;
     }
 
-        // Método principal pra criar a GUI
+    @Override
+    public void configJanelaPrincipal(JFrame janelaPrincipal) {
+        super.configJanelaPrincipal(janelaPrincipal);
+    }
+
+    @Override
+    public void buttonAddActionListener(BibliotecaGUI botao) {
+        super.buttonAddActionListener(botao);
+    }
+
+    // Método principal pra criar a GUI
     public void criarJanela(Biblioteca biblioteca){
 
             // Config do jFrame
-        janelaPrincipal.setSize(350, 200);
-        janelaPrincipal.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        janelaPrincipal.setLocationRelativeTo(null);
+        configJanelaPrincipal(janelaPrincipal);
 
             // Content Pane principal
         Container cp = janelaPrincipal.getContentPane();
@@ -118,23 +126,9 @@ public class FilmesGUI extends JFrame {
         cp.add(manipulaDadosButtonPanel);
         janelaPrincipal.setVisible(true);
 
-            // ActionListener pra ir pra GUI de livros
-        livrosButton.addActionListener(livros -> {
-            janelaPrincipal.setVisible(false);
-            LivrosGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        });
-
-            // ActionListener pra ir pra GUI de revistas
-        revistasButton.addActionListener(revistas -> {
-            janelaPrincipal.setVisible(false);
-            RevistasGUI.getInstancia(biblioteca).getJanela().setVisible(true);
-        });
-
-            // ActionListener pra ir pra GUI de listagem
-        listagemButton.addActionListener(listar -> {
-            janelaPrincipal.setVisible(false);
-            ListagemGUI.getInstancia(biblioteca).getJanelaPrincipal().setVisible(true);
-        });
+        livrosButton.addActionListener(livros -> buttonAddActionListener(LivrosGUI.getInstancia(biblioteca)));
+        revistasButton.addActionListener(revistas -> buttonAddActionListener(RevistasGUI.getInstancia(biblioteca)));
+        listagemButton.addActionListener(listar -> buttonAddActionListener(ListagemGUI.getInstancia(biblioteca)));
 
             // ActionListener pra incluir dados inseridos no arrayList principal
         incluirButton.addActionListener(inserirDados -> {
